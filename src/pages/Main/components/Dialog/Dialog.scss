@@ -1,0 +1,68 @@
+.dialog {
+  background-color: #373351;
+  padding: 10px 30px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+
+  $root: &;
+
+  &__user-info {
+    border-bottom: 1px solid #ffffff10;
+    padding: 10px 10px 10px 0;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &__user-img {
+    min-width: 73px;
+    max-width: 73px;
+    min-height: 74px;
+    max-height: 74px;
+    border: 5px solid #6f6198;
+    border-radius: 100%;
+    margin-right: 15px;
+  }
+
+  &__user-name {
+    color: #ffffff;
+    font-family: "Roboto";
+    font-size: 25px;
+    font-weight: bolder;
+  }
+
+  &__user-status {
+    color: #8f8497;
+    font-family: Roboto;
+    font-size: 19px;
+    font-weight: 400;
+  }
+
+  &__messages {
+    height: 78%;
+    overflow-y: auto;
+  }
+
+  @media (max-width: 540px), (max-device-width: 540px) {
+    padding: 10px;
+
+    #{$root}__user-name {
+      font-size: 18px;
+    }
+
+    #{$root}__user-img {
+      min-width: 50px;
+      max-width: 50px;
+      min-height: 50px;
+      max-height: 50px;
+      border: 2px solid #6f6198;
+      border-radius: 100%;
+      margin-right: 10px;
+    }
+
+    #{$root}__user-status {
+      font-size: 15px;
+    }
+  }
+}

@@ -1,0 +1,80 @@
+.message-controls {
+  $root: &;
+
+  max-width: 546px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 31px 0px 30px;
+  background-color: #373351;
+  border-top: 1px solid #ffffff10;
+  flex-wrap: wrap;
+
+  &__attach {
+    display: block;
+    width: 17px;
+    height: 28px;
+    cursor: pointer;
+    background: url("img/attach.png") no-repeat center / contain;
+  }
+
+  &__attach input {
+    visibility: hidden;
+    width: 0px;
+  }
+
+  &__message-input {
+    height: 29px;
+    background-color: #373351;
+    border: none;
+    outline: none;
+    color: #fff;
+    width: calc(100% - 170px);
+    font-family: "Roboto";
+    line-height: 25px;
+    font-size: 20px;
+    resize: none;
+
+    &::-webkit-input-placeholder {
+      color: #8f8497;
+      font-family: "Roboto";
+      font-size: 16px;
+    }
+
+    &::-moz-placeholder {
+      color: #8f8497;
+      font-family: "Roboto";
+      font-size: 16px;
+    }
+
+    &::-ms-input-placeholder {
+      color: #8f8497;
+      font-family: "Roboto";
+      font-size: 16px;
+    }
+
+    &::-moz-placeholder {
+      /* Firefox 18- */
+      color: #8f8497;
+      font-family: "Roboto";
+      font-size: 16px;
+    }
+  }
+
+  &__send {
+    width: 57px;
+    height: 58px;
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
+    background: #fff url("img/send.png") no-repeat center / 27px 24px;
+  }
+
+  @media (max-width: 910px), (max-device-width: 910px) {
+    #{$root}__message-input {
+      order: -1;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
