@@ -1,6 +1,6 @@
 import { createAction } from "@reduxjs/toolkit";
-import { UserInfoInDialog } from "src/types/backendResponses";
+import { FoundedUser, UserInfoInDialog } from "src/types/backendResponses";
 
-export type AppendUsersParams = { users: UserInfoInDialog[] };
+export type AppendUsersParams = { users: UserInfoInDialog[] | FoundedUser[] };
 export const appendUsersAction =
   createAction<AppendUsersParams>("users/appendUsers");

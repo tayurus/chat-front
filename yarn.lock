@@ -2005,13 +2005,6 @@
     anymatch "^3.0.0"
     source-map "^0.6.0"
 
-"@types/ws@^8.5.3":
-  version "8.5.3"
-  resolved "https://artifactory.mvk.com/artifactory/api/npm/npm/@types/ws/-/ws-8.5.3.tgz#7d25a1ffbecd3c4f2d35068d0b283c037003274d"
-  integrity sha1-fSWh/77NPE8tNQaNCyg8A3ADJ00=
-  dependencies:
-    "@types/node" "*"
-
 "@types/yargs-parser@*":
   version "21.0.0"
   resolved "https://artifactory.mvk.com/artifactory/api/npm/npm/@types/yargs-parser/-/yargs-parser-21.0.0.tgz#0c60e537fa790f5f9472ed2776c2b71ec117351b"
@@ -12249,11 +12242,6 @@ ws@^7.4.6:
   version "7.5.9"
   resolved "https://artifactory.mvk.com/artifactory/api/npm/npm/ws/-/ws-7.5.9.tgz#54fa7db29f4c7cec68b1ddd3a89de099942bb591"
   integrity sha1-VPp9sp9MfOxosd3TqJ3gmZQrtZE=
-
-ws@^8.8.1:
-  version "8.8.1"
-  resolved "https://artifactory.mvk.com/artifactory/api/npm/npm/ws/-/ws-8.8.1.tgz#5dbad0feb7ade8ecc99b830c1d77c913d4955ff0"
-  integrity sha1-XbrQ/ret6OzJm4MMHXfJE9SVX/A=
 
 xml-name-validator@^3.0.0:
   version "3.0.0"

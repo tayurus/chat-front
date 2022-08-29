@@ -10,6 +10,7 @@ import { PAGES } from "src/helpers/router";
 import {
   FoundedUser,
   SearchUsersResponse,
+  SearchUsersSuccessResponse,
   UserInfoInDialog,
 } from "src/types/backendResponses";
 import { api, ENDPOINTS, tryCatchWrapper } from "src/helpers/api";
@@ -26,6 +27,7 @@ import { getLastMessageFromMessagesArray } from "src/helpers/message";
 import { getUserFIOByData } from "src/helpers/user";
 import { getAllDialogParticipantsExceptCurrentUser } from "src/helpers/dialog";
 import { usersSelectors } from "src/redux/users/reducer/users.reducer";
+import { appendUsersAction } from "src/redux/users/actions";
 
 const b = cn("dialogs");
 
@@ -60,10 +62,11 @@ export const Dialogs: FC<Props> = (props) => {
     tryCatchWrapper({
       asyncCode: async () => {
         if (searchQuery) {
-          const result: SearchUsersResponse = await api.get(
+          const result: SearchUsersSuccessResponse = await api.get(
             `${ENDPOINTS.SEARCH_USERS}?query=${searchQuery}`
           );
           setSearchResult(result);
+          dispatch(appendUsersAction({ users: result }));
         }
       },
       errorText: "search error",
@@ -73,7 +76,7 @@ export const Dialogs: FC<Props> = (props) => {
 
   const handleSearchResultClick = (userInfo: FoundedUser) => {
     const newDialogQueryParams = qs.stringify({
-      toUserId: userInfo._id,
+      toUserId: userInfo.id,
       first_name: userInfo.first_name,
       last_name: userInfo.last_name,
     });
@@ -101,10 +104,10 @@ export const Dialogs: FC<Props> = (props) => {
             currentUserId
           ).id;
 
-          const receiverData = usersSelectors.selectById(
+          const receiverData = (usersSelectors.selectById(
             state.users,
             receiverId
-          ) as UserInfoInDialog;
+          ) || {}) as UserInfoInDialog;
 
           const receiverName = getUserFIOByData(receiverData);
 

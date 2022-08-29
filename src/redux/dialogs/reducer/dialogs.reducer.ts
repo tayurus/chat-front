@@ -58,7 +58,7 @@ export const dialogsReducer = createReducer(initialState, {
   [getDialog.fulfilled.toString()]: getDialogSuccess,
   [getDialog.rejected.toString()]: getDialogFailed,
 
-  [appendMessageAction.type.toString()]: appendMessage,
+  [appendMessageAction.fulfilled.toString()]: appendMessage,
 
   [updateDialogAction.type.toString()]: updateDialog,
 
