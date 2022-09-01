@@ -1,9 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { api, ENDPOINTS } from "src/helpers/api";
+import { api } from "src/helpers/api";
 import { RegisterUserSuccessResponse } from "../../../types/backendResponses";
 import { RegisterUserBodyParams } from "../../../types/backendParams";
 import { message } from "antd";
 import { RequestParams } from "src/types/redux";
+import {
+  BASE_ROUTES,
+  USER_ROUTES,
+} from "src/types/backendAndFrontendCommonTypes/routes";
 
 export type RegisterUserReturn = RegisterUserSuccessResponse;
 export const register = createAsyncThunk<
@@ -13,7 +17,7 @@ export const register = createAsyncThunk<
   try {
     const { bodyParams } = params;
     const response: RegisterUserSuccessResponse = await api.post(
-      ENDPOINTS.REGISTER,
+      `${BASE_ROUTES.USER}${USER_ROUTES.REGISTER}`,
       bodyParams
     );
     return response;

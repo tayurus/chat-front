@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { api, ENDPOINTS } from "src/helpers/api";
+import { api } from "src/helpers/api";
 import { GetDialogSuccessResponse } from "../../../types/backendResponses";
 import {
   GetDialogQueryParams,
@@ -9,6 +9,7 @@ import { RequestParams } from "src/types/redux";
 import qs from "qs";
 import { message } from "antd";
 import { appendUsersAction } from "src/redux/users/actions";
+import { BASE_ROUTES } from "src/types/backendAndFrontendCommonTypes/routes";
 
 export type GetDialogReturn = GetDialogSuccessResponse;
 export const getDialog = createAsyncThunk<
@@ -21,7 +22,7 @@ export const getDialog = createAsyncThunk<
   } = params;
   try {
     const response: GetDialogSuccessResponse = await api.get(
-      `${ENDPOINTS.GET_DIALOG}/${dialogId}?${qs.stringify(queryParams)}`
+      `${BASE_ROUTES.DIALOG}/${dialogId}?${qs.stringify(queryParams)}`
     );
     thunkAPI.dispatch(appendUsersAction({ users: response.participants }));
     return response;

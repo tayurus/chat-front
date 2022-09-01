@@ -13,7 +13,7 @@ import {
   SearchUsersSuccessResponse,
   UserInfoInDialog,
 } from "src/types/backendResponses";
-import { api, ENDPOINTS, tryCatchWrapper } from "src/helpers/api";
+import { api, tryCatchWrapper } from "src/helpers/api";
 import { UserSearch } from "./components";
 import { useAppDispatch, useAppSelector } from "src/redux/hooks";
 import { dialogsSelectors } from "src/redux/dialogs/reducer/dialogs.reducer";
@@ -28,6 +28,10 @@ import { getUserFIOByData } from "src/helpers/user";
 import { getAllDialogParticipantsExceptCurrentUser } from "src/helpers/dialog";
 import { usersSelectors } from "src/redux/users/reducer/users.reducer";
 import { appendUsersAction } from "src/redux/users/actions";
+import {
+  BASE_ROUTES,
+  USER_ROUTES,
+} from "src/types/backendAndFrontendCommonTypes/routes";
 
 const b = cn("dialogs");
 
@@ -63,7 +67,7 @@ export const Dialogs: FC<Props> = (props) => {
       asyncCode: async () => {
         if (searchQuery) {
           const result: SearchUsersSuccessResponse = await api.get(
-            `${ENDPOINTS.SEARCH_USERS}?query=${searchQuery}`
+            `${BASE_ROUTES.USER}${USER_ROUTES.SEARCH_USERS}?query=${searchQuery}`
           );
           setSearchResult(result);
           dispatch(appendUsersAction({ users: result }));

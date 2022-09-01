@@ -2,7 +2,7 @@ import React, { FC, useEffect } from "react";
 import { cn } from "src/helpers/bem";
 import { Props } from "./DialogProps";
 import "./Dialog.scss";
-import { api, ENDPOINTS, tryCatchWrapper } from "src/helpers/api";
+import { api, tryCatchWrapper } from "src/helpers/api";
 import { SendMessageBodyParams } from "src/types/backendParams";
 import {
   FoundedMessage,
@@ -28,6 +28,10 @@ import { LOADING_TYPE } from "src/types/loading";
 import { getUserFIOByData } from "src/helpers/user";
 import { getAllDialogParticipantsExceptCurrentUser } from "src/helpers/dialog";
 import { usersSelectors } from "src/redux/users/reducer/users.reducer";
+import {
+  BASE_ROUTES,
+  MESSAGE_ROUTES,
+} from "src/types/backendAndFrontendCommonTypes/routes";
 
 const b = cn("dialog");
 
@@ -90,7 +94,7 @@ export const Dialog: FC<Props> = (props) => {
           any,
           any,
           SendMessageBodyParams
-        >(ENDPOINTS.SEND_MESSAGE, {
+        >(`${BASE_ROUTES.MESSAGE}${MESSAGE_ROUTES.SEND}`, {
           message: content,
           toUserId: isNewDialog
             ? (currentDialog as NewDialog).toUserId

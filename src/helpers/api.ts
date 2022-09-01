@@ -27,18 +27,6 @@ setInterceptors(api);
 
 export { api };
 
-export enum ENDPOINTS {
-  REGISTER = "user/register",
-  LOGIN = "user/login",
-  SEARCH_USERS = "user/search",
-  WHO_AM_I = "user/whoAmI",
-
-  SEND_MESSAGE = "message/send",
-
-  GET_DIALOGS = "dialog/dialogs",
-  GET_DIALOG = "dialog",
-}
-
 export async function tryCatchWrapper<T>(params: {
   asyncCode: () => Promise<T>;
   errorText?: string;
