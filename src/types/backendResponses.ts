@@ -50,6 +50,7 @@ export type FoundedUser = {
   last_name: string;
   id: string;
 };
+
 export type SearchUsersResponse = string | Array<FoundedUser>;
 export type SearchUsersSuccessResponse = Array<FoundedUser>;
 
@@ -86,3 +87,5 @@ export type WsUserTypingResponse = {
   typingType: UserTyping;
   dialogId: string;
 };
+
+export type UpdateUserPasswordResponse = {};

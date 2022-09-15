@@ -9,6 +9,7 @@ export enum USER_ROUTES {
   LOGIN = "/login",
   SEARCH_USERS = "/search",
   WHO_AM_I = "/whoAmI",
+  UPDATE_PASSWORD = "/updatePassword",
 }
 
 export enum MESSAGE_ROUTES {

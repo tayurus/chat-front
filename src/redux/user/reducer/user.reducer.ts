@@ -1,6 +1,6 @@
-import { login, register, getWhoAmI } from "../actions";
+import { login, register, getWhoAmI, updatePassword } from "../actions";
 import { createReducer } from "@reduxjs/toolkit";
-import { LOADING_TYPE } from "../../../types/loading";
+import { LOADING_TYPE } from "src/types/loading";
 import { LoginSuccessResponse } from "src/types/backendResponses";
 import { DEFAULT_EMPTY_STRING } from "src/helpers/constants";
 
@@ -11,6 +11,11 @@ import {
   getWhoAmISuccess,
   getWhoAmIFailed,
 } from "./getWhoAmI";
+import {
+  updatePasswordRequest,
+  updatePasswordSuccess,
+  updatePasswordFailed,
+} from "./updatePassword";
 
 export type UserState = {
   userLoading: LOADING_TYPE;
@@ -36,4 +41,8 @@ export const userReducer = createReducer(initialState, {
   [getWhoAmI.pending.toString()]: getWhoAmIRequest,
   [getWhoAmI.fulfilled.toString()]: getWhoAmISuccess,
   [getWhoAmI.rejected.toString()]: getWhoAmIFailed,
+
+  [updatePassword.pending.toString()]: updatePasswordRequest,
+  [updatePassword.fulfilled.toString()]: updatePasswordSuccess,
+  [updatePassword.rejected.toString()]: updatePasswordFailed,
 });

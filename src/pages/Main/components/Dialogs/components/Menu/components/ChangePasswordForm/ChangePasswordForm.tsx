@@ -4,16 +4,32 @@ import { cn } from "src/helpers/bem";
 import { Props } from "./ChangePasswordFormProps";
 import "./ChangePasswordForm.scss";
 import { Form, Input, Button } from "antd";
+import { useAppDispatch } from "src/redux/hooks";
+import { updatePassword } from "src/redux/user/actions";
 
 const b = cn("change-password-form");
 
 export const ChangePasswordForm: FC<Props> = (props) => {
   const { className } = props;
+  const dispatch = useAppDispatch();
 
   const [form] = Form.useForm();
 
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+  const onFinish = (values: {
+    newPassword: string;
+    oldPassword: string;
+    confirm: string;
+  }) => {
+    dispatch(
+      updatePassword({
+        bodyParams: {
+          newPassword: values.newPassword,
+          oldPassword: values.oldPassword,
+        },
+        queryParams: {},
+        urlParams: {},
+      })
+    );
   };
 
   const formItemLayout = {
