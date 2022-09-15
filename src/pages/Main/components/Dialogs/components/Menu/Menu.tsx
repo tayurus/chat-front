@@ -14,7 +14,7 @@ export const Menu: FC<Props> = (props) => {
   return (
     <Drawer
       className={classNames(b(), className)}
-      title="Настройки"
+      title="Settings"
       placement="left"
       onClose={onClose}
       visible={visible}
