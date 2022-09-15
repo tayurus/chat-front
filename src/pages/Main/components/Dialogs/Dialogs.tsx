@@ -14,7 +14,7 @@ import {
   UserInfoInDialog,
 } from "src/types/backendResponses";
 import { api, tryCatchWrapper } from "src/helpers/api";
-import { UserSearch } from "./components";
+import { UserSearch, Menu } from "./components";
 import { useAppDispatch, useAppSelector } from "src/redux/hooks";
 import { dialogsSelectors } from "src/redux/dialogs/reducer/dialogs.reducer";
 import { getWhoAmI } from "src/redux/user/actions";
@@ -32,6 +32,7 @@ import {
   BASE_ROUTES,
   USER_ROUTES,
 } from "src/types/backendAndFrontendCommonTypes/routes";
+import { MenuOutlined } from "@ant-design/icons";
 
 const b = cn("dialogs");
 
@@ -40,6 +41,7 @@ export const Dialogs: FC<Props> = (props) => {
   const [searchResult, setSearchResult] = useState<null | SearchUsersResponse>(
     null
   );
+  const [menuOpened, setMenuOpened] = useState(false);
   const dispatch = useAppDispatch();
   const { className } = props;
   const navigate = useNavigate();
@@ -89,11 +91,18 @@ export const Dialogs: FC<Props> = (props) => {
 
   return (
     <div className={classNames(b(), className)}>
-      <div className={b("search")}>
-        <Input.Search
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value.trim())}
+      <div className={b("controls")}>
+        <MenuOutlined
+          className={b("menu-icon")}
+          onClick={() => setMenuOpened(true)}
         />
+        <Menu visible={menuOpened} onClose={() => setMenuOpened(false)} />
+        <div className={b("search")}>
+          <Input.Search
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value.trim())}
+          />
+        </div>
       </div>
 
       {searchQuery ? (

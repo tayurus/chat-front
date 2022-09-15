@@ -3,6 +3,21 @@
   width: 300px;
   border-right: 1px solid;
 
+  &__controls {
+    display: flex;
+    align-items: center;
+  }
+
+  &__search {
+    width: 100%;
+  }
+
+  &__menu-icon {
+    font-size: 20px;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
   &__item {
     cursor: pointer;
   }
