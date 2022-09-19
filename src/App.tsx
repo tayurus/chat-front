@@ -18,9 +18,10 @@ function App() {
     user: { userLoading },
     dialogs: { dialogsLoading, dialogLoading },
     loader: { visible: loaderVisible },
+    file: { fileLoading },
   } = state;
   const showSpinner = () => {
-    return [userLoading, dialogsLoading, dialogLoading].some(
+    return [userLoading, dialogsLoading, dialogLoading, fileLoading].some(
       (it) => it === LOADING_TYPE.LOADING
     ) || loaderVisible ? (
       <Spin className={b("spinner")} size="large" style={{ zIndex: 1000000 }} />

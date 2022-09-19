@@ -4,6 +4,7 @@ import { dialogsReducer } from "./dialogs/reducer/dialogs.reducer";
 import { userReducer } from "src/redux/user/reducer/user.reducer";
 import { loaderReducer } from "src/redux/loader/reducer/loader.reducer";
 import { usersReducer } from "src/redux/users/reducer/users.reducer";
+import { fileReducer } from "src/redux/file/reducer/file.reducer";
 
 const loggerMiddleware = createLogger();
 
@@ -13,6 +14,7 @@ export const store = configureStore({
     user: userReducer,
     loader: loaderReducer,
     users: usersReducer,
+    file: fileReducer,
   },
   middleware: (getDefaultMiddleware) => {
     if (process.env.NODE_ENV !== "production") {
