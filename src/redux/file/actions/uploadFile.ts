@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "src/helpers/api";
-import { UploadFileResponse } from "src/types/backendResponses";
+import { UploadFileSuccessResponse } from "src/types/backendResponses";
 import {
   UploadFileBodyParams,
   UploadFileQueryParams,
@@ -13,7 +13,7 @@ import {
   FILE_ROUTES,
 } from "src/types/backendAndFrontendCommonTypes/routes";
 
-export type UploadFileReturn = UploadFileResponse;
+export type UploadFileReturn = UploadFileSuccessResponse;
 export const uploadFile = createAsyncThunk<
   UploadFileReturn,
   RequestParams<UploadFileQueryParams, {}, UploadFileBodyParams>
@@ -25,7 +25,7 @@ export const uploadFile = createAsyncThunk<
   try {
     const formData = new FormData();
     formData.append("file", file);
-    const response: UploadFileResponse = await api.post(
+    const response: UploadFileSuccessResponse = await api.post(
       `${BASE_ROUTES.FILE}${FILE_ROUTES.UPLOAD}?${qs.stringify(queryParams)}`,
       formData,
       { headers: { "Content-Type": "multipart/form-data" } }
