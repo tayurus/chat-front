@@ -2449,6 +2449,13 @@ ansi-styles@^5.0.0:
   resolved "https://artifactory.mvk.com/artifactory/api/npm/npm/ansi-styles/-/ansi-styles-5.2.0.tgz#07449690ad45777d1924ac2abb2fc8895dba836b"
   integrity sha1-B0SWkK1Fd30ZJKwquy/IiV26g2s=
 
+antd-img-crop@^4.2.4:
+  version "4.2.4"
+  resolved "https://artifactory.mvk.com/artifactory/api/npm/npm/antd-img-crop/-/antd-img-crop-4.2.4.tgz#daf5385c1bf041a55a8d178026de1b8fea18dc30"
+  integrity sha512-Wgv+HhWhG+iIyzWech3xL0AwPf2mJveINv/6/cvLCn7fJ6xePVlGUL7UF3Y3y4V/Ogs8JGqKD0EaX+W3MagfTw==
+  dependencies:
+    react-easy-crop "^4.4.2"
+
 antd@*, antd@^4.22.3:
   version "4.22.3"
   resolved "https://artifactory.mvk.com/artifactory/api/npm/npm/antd/-/antd-4.22.3.tgz#c6d4ced17e9c21b55c6234595d962c5f9d6768db"
@@ -7923,6 +7930,11 @@ normalize-url@^3.0.0:
   resolved "https://artifactory.mvk.com/artifactory/api/npm/npm/normalize-url/-/normalize-url-3.3.0.tgz#b2e1c4dc4f7c6d57743df733a4f5978d18650559"
   integrity sha1-suHE3E98bVd0PfczpPWXjRhlBVk=
 
+normalize-wheel@^1.0.1:
+  version "1.0.1"
+  resolved "https://artifactory.mvk.com/artifactory/api/npm/npm/normalize-wheel/-/normalize-wheel-1.0.1.tgz#aec886affdb045070d856447df62ecf86146ec45"
+  integrity sha512-1OnlAPZ3zgrk8B91HyRj+eVv+kS5u+Z0SCsak6Xil/kmgEia50ga7zfkumayonZrImffAxPU/5WcyGhzetHNPA==
+
 npm-run-path@^2.0.0:
   version "2.0.2"
   resolved "https://artifactory.mvk.com/artifactory/api/npm/npm/npm-run-path/-/npm-run-path-2.0.2.tgz#35a9232dfa35d7067b4cb2ddf2357b1871536c5f"
@@ -9819,6 +9831,14 @@ react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
+react-easy-crop@^4.4.2:
+  version "4.5.0"
+  resolved "https://artifactory.mvk.com/artifactory/api/npm/npm/react-easy-crop/-/react-easy-crop-4.5.0.tgz#40eaef339eb519291465e2f518982c7d6be44ae5"
+  integrity sha512-zmN0huzZXOcaNyGyDwChbyhn6MlQFHzWQE6KRW+4SckY3hqkjnHuCUtqjCajO+8m1+lEDO7Cao3TKbJPNaQdcg==
+  dependencies:
+    normalize-wheel "^1.0.1"
+    tslib "2.0.1"
+
 react-error-overlay@^6.0.9:
   version "6.0.11"
   resolved "https://artifactory.mvk.com/artifactory/api/npm/npm/react-error-overlay/-/react-error-overlay-6.0.11.tgz#92835de5841c5cf08ba00ddd2d677b6d17ff9adb"
@@ -11432,6 +11452,11 @@ tsconfig-paths@^3.14.1:
     json5 "^1.0.1"
     minimist "^1.2.6"
     strip-bom "^3.0.0"
+
+tslib@2.0.1:
+  version "2.0.1"
+  resolved "https://artifactory.mvk.com/artifactory/api/npm/npm/tslib/-/tslib-2.0.1.tgz#410eb0d113e5b6356490eec749603725b021b43e"
+  integrity sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==
 
 tslib@^1.8.1:
   version "1.14.1"

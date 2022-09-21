@@ -4,7 +4,7 @@ import { cn } from "src/helpers/bem";
 import { Props } from "src/pages/Main/components/Dialogs/components/Menu/MenuProps";
 import "./Menu.scss";
 import { Drawer } from "antd";
-import { ChangePasswordForm } from "./components";
+import { ChangePasswordForm, ChangeProfilePhoto } from "./components";
 import { api } from "src/helpers/api";
 import {
   BASE_ROUTES,
@@ -23,7 +23,7 @@ export const Menu: FC<Props> = (props) => {
   useEffect(() => {
     api
       .get(
-        `${BASE_ROUTES.FILE}${FILE_ROUTES.UPLOAD_STORAGE}/1a6853e3f76679529ba3a8d0ade17aae.png`
+        `${BASE_ROUTES.FILE}${FILE_ROUTES.UPLOAD_STORAGE}/1abf2d164f789624e3295f4e9ebaa03a.jpg`
       )
       .then((data) => {
         // @ts-ignore
@@ -39,21 +39,7 @@ export const Menu: FC<Props> = (props) => {
       visible={visible}
     >
       <ChangePasswordForm />
-      {/*<img src={img} alt="shit" />*/}
-      <input
-        type="file"
-        onChange={(e) => {
-          if (e.target.files) {
-            dispatch(
-              uploadFile({
-                queryParams: { type: FILE_UPLOAD.USER_PROFILE_PHOTO },
-                bodyParams: { file: e.target.files[0] },
-                urlParams: {},
-              })
-            );
-          }
-        }}
-      />
+      <ChangeProfilePhoto />
     </Drawer>
   );
 };
