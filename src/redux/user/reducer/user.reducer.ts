@@ -26,6 +26,7 @@ const initialState: UserState = {
   email: DEFAULT_EMPTY_STRING,
   first_name: DEFAULT_EMPTY_STRING,
   last_name: DEFAULT_EMPTY_STRING,
+  profilePhoto: DEFAULT_EMPTY_STRING,
   id: DEFAULT_EMPTY_STRING,
 };
 

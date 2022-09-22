@@ -18,15 +18,18 @@ export const ChangeProfilePhoto: FC<Props> = (props) => {
 
   const [fileList, setFileList] = useState<UploadFile[]>([]);
 
-  const onChange: UploadProps["onChange"] = ({ fileList }) => {
-    console.log("CHANGE");
-    dispatch(
-      uploadFile({
-        queryParams: { type: FILE_UPLOAD.USER_PROFILE_PHOTO },
-        bodyParams: { file: fileList[0].originFileObj as Blob },
-        urlParams: {},
-      })
-    );
+  const onChange: UploadProps["onChange"] = async ({ fileList }) => {
+    if (fileList.length) {
+      await dispatch(
+        uploadFile({
+          queryParams: { type: FILE_UPLOAD.USER_PROFILE_PHOTO },
+          bodyParams: { file: fileList[0].originFileObj as Blob },
+          urlParams: {},
+        })
+      );
+      fileList[0].status = "success";
+    }
+
     setFileList(fileList);
   };
 
@@ -54,6 +57,7 @@ export const ChangeProfilePhoto: FC<Props> = (props) => {
           onChange={onChange}
           onPreview={onPreview}
           maxCount={1}
+          customRequest={() => {}}
         >
           {fileList.length !== 1 && "+ Upload"}
         </Upload>

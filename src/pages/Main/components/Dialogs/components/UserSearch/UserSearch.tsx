@@ -4,6 +4,7 @@ import { cn } from "src/helpers/bem";
 import { Props } from "src/pages/Main/components/Dialogs/components/UserSearch/UserSearchProps";
 import "src/pages/Main/components/Dialogs/components/UserSearch/UserSearch.scss";
 import { Avatar, Comment } from "antd";
+import { getUserProfilePhotoUrl } from "src/helpers/user";
 
 const b = cn("user-search");
 
@@ -20,7 +21,15 @@ export const UserSearch: FC<Props> = (props) => {
         <div onClick={() => onUserClick(it)} className={b("item")}>
           <Comment
             author={<span>{`${it.last_name} ${it.first_name}`}</span>}
-            avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+            avatar={
+              <Avatar
+                src={
+                  it.profilePhoto
+                    ? getUserProfilePhotoUrl(it.profilePhoto)
+                    : `https://joeschmoe.io/api/v1/random`
+                }
+              />
+            }
             content={<p>last seen at never</p>}
           />
         </div>
