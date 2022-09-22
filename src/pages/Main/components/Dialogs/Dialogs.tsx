@@ -85,6 +85,7 @@ export const Dialogs: FC<Props> = (props) => {
       toUserId: userInfo.id,
       first_name: userInfo.first_name,
       last_name: userInfo.last_name,
+      profilePhoto: userInfo.profilePhoto,
     });
     navigate(`${PAGES.DIALOG}/${NEW_DIALOG_ID}?${newDialogQueryParams}`);
   };

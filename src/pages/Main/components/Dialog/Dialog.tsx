@@ -7,7 +7,6 @@ import { SendMessageBodyParams } from "src/types/backendParams";
 import {
   FoundedMessage,
   SendMessageSuccessResponse,
-  UserInfoInDialog,
 } from "src/types/backendResponses";
 import {
   Message,
@@ -25,7 +24,7 @@ import { NewDialog } from "src/types/newDialog";
 import { NEW_DIALOG_ID } from "src/helpers/constants";
 import { PAGES, useQuery } from "src/helpers/router";
 import { LOADING_TYPE } from "src/types/loading";
-import { getUserFIOByData } from "src/helpers/user";
+import { getUserFIOByData, getUserProfilePhotoUrl } from "src/helpers/user";
 import { getAllDialogParticipantsExceptCurrentUser } from "src/helpers/dialog";
 import { usersSelectors } from "src/redux/users/reducer/users.reducer";
 import {
@@ -43,7 +42,8 @@ export const Dialog: FC<Props> = (props) => {
   const navigate = useNavigate();
 
   const { dialogId } = useParams<{ dialogId: string }>();
-  const { toUserId, first_name, last_name } = useQuery<NewDialog>();
+  const { toUserId, first_name, last_name, profilePhoto } =
+    useQuery<NewDialog>();
   const isNewDialog = dialogId === NEW_DIALOG_ID;
 
   let messages: FoundedMessage[] = [];
@@ -54,7 +54,7 @@ export const Dialog: FC<Props> = (props) => {
       messages = currentDialog.messages;
     }
   } else {
-    currentDialog = { toUserId, first_name, last_name };
+    currentDialog = { toUserId, first_name, last_name, profilePhoto };
   }
 
   useEffect(() => {
@@ -116,10 +116,25 @@ export const Dialog: FC<Props> = (props) => {
           getAllDialogParticipantsExceptCurrentUser(
             currentDialog.participants,
             currentUserId
-          ) as UserInfoInDialog
+          )
         );
       } else {
         return getUserFIOByData(currentDialog);
+      }
+    }
+  };
+
+  const getReceiverProfilePhoto = () => {
+    if (currentDialog) {
+      if ("participants" in currentDialog) {
+        return getUserProfilePhotoUrl(
+          getAllDialogParticipantsExceptCurrentUser(
+            currentDialog.participants,
+            currentUserId
+          ).profilePhoto
+        );
+      } else {
+        return getUserProfilePhotoUrl(currentDialog.profilePhoto);
       }
     }
   };
@@ -151,13 +166,19 @@ export const Dialog: FC<Props> = (props) => {
     }
   }
 
+  const receiverProfilePhoto = getReceiverProfilePhoto();
+
   return currentDialog ? (
     <div className={b()}>
       <div className={b("user-info")}>
         <div
           className={b("user-img")}
           style={{
-            background: `url(https://brithouse.ru/wp-content/uploads/2015/07/flat-face-icon-23.png) no-repeat center / contain`,
+            background: `url(${
+              receiverProfilePhoto
+                ? receiverProfilePhoto
+                : "https://brithouse.ru/wp-content/uploads/2015/07/flat-face-icon-23.png"
+            }) no-repeat center / contain`,
           }}
         />
         <div className={b("user-wrapper")}>
