@@ -1,4 +1,10 @@
-import { login, register, getWhoAmI, updatePassword } from "../actions";
+import {
+  login,
+  register,
+  getWhoAmI,
+  updatePassword,
+  removeProfileFile,
+} from "../actions";
 import { createReducer } from "@reduxjs/toolkit";
 import { LOADING_TYPE } from "src/types/loading";
 import { LoginSuccessResponse } from "src/types/backendResponses";
@@ -16,6 +22,11 @@ import {
   updatePasswordSuccess,
   updatePasswordFailed,
 } from "./updatePassword";
+import {
+  removeProfilePhotoRequest,
+  removeProfilePhotoSuccess,
+  removeProfilePhotoFailed,
+} from "./removeProfilePhoto";
 
 export type UserState = {
   userLoading: LOADING_TYPE;
@@ -46,4 +57,8 @@ export const userReducer = createReducer(initialState, {
   [updatePassword.pending.toString()]: updatePasswordRequest,
   [updatePassword.fulfilled.toString()]: updatePasswordSuccess,
   [updatePassword.rejected.toString()]: updatePasswordFailed,
+
+  [removeProfileFile.pending.toString()]: removeProfilePhotoRequest,
+  [removeProfileFile.fulfilled.toString()]: removeProfilePhotoSuccess,
+  [removeProfileFile.rejected.toString()]: removeProfilePhotoFailed,
 });

@@ -9,6 +9,8 @@ import { Upload } from "antd";
 import { uploadFile } from "src/redux/file/actions";
 import { FILE_UPLOAD } from "src/types/backendAndFrontendCommonTypes/constants";
 import { useAppDispatch } from "src/redux/hooks";
+import { removeProfileFile } from "src/redux/user/actions";
+import { unwrapResult } from "@reduxjs/toolkit";
 
 const b = cn("change-profile-photo");
 
@@ -20,18 +22,34 @@ export const ChangeProfilePhoto: FC<Props> = (props) => {
 
   const onChange: UploadProps["onChange"] = async ({ fileList }) => {
     if (fileList.length) {
-      await dispatch(
-        uploadFile({
-          queryParams: { type: FILE_UPLOAD.USER_PROFILE_PHOTO },
-          bodyParams: { file: fileList[0].originFileObj as Blob },
-          urlParams: {},
-        })
+      const uploadResult = unwrapResult(
+        await dispatch(
+          uploadFile({
+            queryParams: { type: FILE_UPLOAD.USER_PROFILE_PHOTO },
+            bodyParams: { file: fileList[0].originFileObj as Blob },
+            urlParams: {},
+          })
+        )
       );
-      fileList[0].status = "success";
+      if (uploadResult.url) {
+        fileList[0].status = "success";
+      }
     }
 
     setFileList(fileList);
   };
+
+  async function onRemove() {
+    const removeSuccess = unwrapResult(
+      await dispatch(
+        removeProfileFile({ queryParams: {}, bodyParams: {}, urlParams: {} })
+      )
+    );
+
+    if (removeSuccess) {
+      setFileList([]);
+    }
+  }
 
   const onPreview = async (file: UploadFile) => {
     let src = file.url as string;
@@ -55,6 +73,7 @@ export const ChangeProfilePhoto: FC<Props> = (props) => {
           listType="picture-card"
           fileList={fileList}
           onChange={onChange}
+          onRemove={onRemove}
           onPreview={onPreview}
           maxCount={1}
           customRequest={() => {}}
