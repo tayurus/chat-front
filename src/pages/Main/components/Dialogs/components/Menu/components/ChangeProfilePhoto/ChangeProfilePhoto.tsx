@@ -8,17 +8,39 @@ import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
 import { Upload } from "antd";
 import { uploadFile } from "src/redux/file/actions";
 import { FILE_UPLOAD } from "src/types/backendAndFrontendCommonTypes/constants";
-import { useAppDispatch } from "src/redux/hooks";
+import { useAppDispatch, useAppSelector } from "src/redux/hooks";
 import { removeProfileFile } from "src/redux/user/actions";
 import { unwrapResult } from "@reduxjs/toolkit";
+import { getUserProfilePhotoUrl } from "src/helpers/user";
 
 const b = cn("change-profile-photo");
+
+function getInitialFileList(profilePhoto: string): UploadFile[] {
+  if (profilePhoto) {
+    return [
+      {
+        uid: "-1",
+        name: "image.png",
+        status: "done",
+        url: getUserProfilePhotoUrl(profilePhoto),
+      },
+    ];
+  }
+
+  return [];
+}
 
 export const ChangeProfilePhoto: FC<Props> = (props) => {
   const { className } = props;
   const dispatch = useAppDispatch();
+  const state = useAppSelector((state) => state);
+  const {
+    user: { profilePhoto },
+  } = state;
 
-  const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [fileList, setFileList] = useState<UploadFile[]>(
+    getInitialFileList(profilePhoto)
+  );
 
   const onChange: UploadProps["onChange"] = async ({ fileList }) => {
     if (fileList.length) {
